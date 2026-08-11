@@ -1,32 +1,75 @@
 # Portfólio Profissional — João Herval Maia
 
-Site de portfólio moderno e acessível para apresentar trajetória, habilidades, projetos e contato.
+Site de portfólio moderno e acessível para apresentar trajetória, habilidades, projetos e formas de contato de **João Herval Maia**, estudante de Engenharia de Software na PUC Minas.
 
-> **Protótipo inicial de front-end** (React + Vite). O deploy em nuvem e o link público podem ser adicionados na etapa seguinte (Vercel/Render/etc.).
+O sistema é uma página única (SPA) com navegação por seções, layout responsivo (cabeçalho, área de conteúdo e rodapé) e conteúdo baseado no currículo profissional.
 
-## Tecnologias utilizadas
+> **Protótipo inicial de front-end** (React + Vite). O deploy em nuvem (Vercel/Render/etc.) e o link público podem ser adicionados na etapa seguinte.
 
-- HTML5 / CSS3 / JavaScript (ES modules)
+## Imagens dos protótipos
+
+### Dashboard / Hero
+
+![Tela inicial do portfólio](Imagens/Dashboard.png)
+
+### Sobre mim
+
+![Seção Sobre mim](Imagens/SobreMim.png)
+
+### Projetos
+
+![Timeline de projetos — parte 1](Imagens/Projetos1.png)
+
+![Timeline de projetos — parte 2](Imagens/Projetos2.png)
+
+### Experiências
+
+![Seção de experiências](Imagens/Experiencias.png)
+
+### Contato
+
+![Seção de contato e formulário](Imagens/Contato.png)
+
+## Descrição do projeto
+
+O portfólio apresenta:
+
+1. **Sobre mim** — apresentação em português e inglês (formação, área de atuação, interesses, objetivos e competências)
+2. **Projetos** — linha do tempo do mais antigo ao mais recente, com descrição, tecnologias e link no GitHub
+3. **Experiências** — estágios e atividades (empresa, cargo, período e descrição)
+4. **Contato** — ícones clicáveis (e-mail, WhatsApp, LinkedIn, GitHub) e formulário com envio de e-mail
+
+## Tecnologias previstas / utilizadas
+
+- HTML5, CSS3 e JavaScript
 - [React](https://react.dev/) 19
 - [Vite](https://vite.dev/) 8
 - Google Fonts (Syne + DM Sans)
-- FormSubmit (envio de e-mail do formulário de contato, sem backend próprio)
+- FormSubmit (envio de e-mail do formulário, sem backend próprio)
+- Hospedagem prevista em nuvem gratuita (ex.: Vercel, Render, Fly.io)
 
-## Dependências e bibliotecas/frameworks
+### Dependências e bibliotecas/frameworks
 
 | Pacote | Uso |
 | --- | --- |
-| `react` / `react-dom` | UI em componentes |
+| `react` / `react-dom` | Interface em componentes |
 | `vite` | Bundler e servidor de desenvolvimento |
 | `@vitejs/plugin-react` | Suporte a JSX/React no Vite |
-| `oxlint` | Lint (script `npm run lint`) |
+| `oxlint` | Lint (`npm run lint`) |
 
-Não há UI kit externo (Mantine/MUI): o visual é CSS próprio para identidade alinhada ao perfil.
+Não há UI kit externo (Mantine/MUI): o visual é CSS próprio, alinhado à identidade do perfil.
 
-## Estrutura de diretórios
+## Estrutura inicial do site
 
 ```text
 SitePortfólioProfissional/
+├── Imagens/                 # prints do protótipo (README)
+│   ├── Dashboard.png
+│   ├── SobreMim.png
+│   ├── Projetos1.png
+│   ├── Projetos2.png
+│   ├── Experiencias.png
+│   └── Contato.png
 ├── public/
 │   └── favicon.svg
 ├── src/
@@ -50,6 +93,12 @@ SitePortfólioProfissional/
 └── README.md
 ```
 
+Layout principal:
+
+- **Cabeçalho** — marca + menu (Sobre mim, Projetos, Experiências, Contato) + PT/EN
+- **Área de conteúdo** — seções âncora da página
+- **Rodapé** — copyright e idiomas
+
 ## Instalação e execução local
 
 Pré-requisitos: Node.js 18+ e npm.
@@ -70,14 +119,11 @@ npm run preview  # pré-visualiza o build de produção
 npm run lint
 ```
 
-## Seções do menu
+## Link do site publicado na nuvem
 
-1. **Sobre mim** — apresentação em PT/EN (formação, área, interesses, objetivos e competências)
-2. **Projetos** — timeline do mais antigo ao mais recente, com tecnologias, GitHub e preview visual
-3. **Experiências** — estágios e atividades (empresa, cargo, período, descrição)
-4. **Contato** — ícones (e-mail, WhatsApp, LinkedIn, GitHub) + formulário com envio de e-mail
+_Ainda não publicado._ Após o deploy, atualize este item com a URL.
 
-## Observações do protótipo
+## Observações
 
 - Conteúdo baseado no currículo de João Herval Maia.
 - No primeiro envio pelo FormSubmit, confirme o e-mail na caixa de entrada de `joao.herval@gmail.com`.
