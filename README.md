@@ -6,9 +6,13 @@ O sistema é uma página única (SPA) com navegação por seções, layout respo
 
 > **Protótipo inicial de front-end** (React + Vite). O deploy em nuvem (Vercel/Render/etc.) e o link público podem ser adicionados na etapa seguinte.
 
+## Link do Wireframe no Figma
+
+https://www.figma.com/make/7JYH4gSY7Aoh3TuhVnUq6Z/Create-site-wireframe?t=i6SmazwDNMe4atRl-1
+
 ## Imagens dos protótipos
 
-### Dashboard / Hero
+### Dashboard
 
 ![Tela inicial do portfólio](Imagens/Dashboard.png)
 
