@@ -8,7 +8,7 @@ O sistema é uma página única (SPA) com navegação por seções, layout respo
 
 ## Link do Wireframe no Figma
 
-https://www.figma.com/make/7JYH4gSY7Aoh3TuhVnUq6Z/Create-site-wireframe?t=i6SmazwDNMe4atRl-1
+https://item-public-69282360.figma.site
 
 ## Imagens dos protótipos
 
