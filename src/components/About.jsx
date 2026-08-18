@@ -2,6 +2,7 @@ import { about, skills } from '../data/content';
 
 export default function About({ lang }) {
   const t = about[lang];
+  const skillGroups = skills[lang];
 
   return (
     <section className="section about" id="sobre" aria-labelledby="sobre-title">
@@ -39,7 +40,7 @@ export default function About({ lang }) {
         <div className="skills-block">
           <h3>{t.skillsLabel}</h3>
           <div className="skills-groups">
-            {skills.map((skill) => (
+            {skillGroups.map((skill) => (
               <div key={skill.group} className="skill-group">
                 <h4>{skill.group}</h4>
                 <ul>

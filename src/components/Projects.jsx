@@ -1,6 +1,6 @@
 import { projects } from '../data/content';
 
-export default function Projects({ copy }) {
+export default function Projects({ copy, lang }) {
   return (
     <section className="section projects" id="projetos" aria-labelledby="projetos-title">
       <div className="section-inner">
@@ -19,8 +19,12 @@ export default function Projects({ copy }) {
                 <div className="project-meta">
                   <time dateTime={project.year}>{project.year}</time>
                   <h3>{project.name}</h3>
-                  <p>{project.description}</p>
-                  <ul className="tech-list" aria-label="Technologies">
+                  <p className="project-role">
+                    <span className="project-role-label">{copy.roleLabel}:</span>{' '}
+                    {project.role[lang]}
+                  </p>
+                  <p>{project.description[lang]}</p>
+                  <ul className="tech-list" aria-label={copy.techListLabel}>
                     {project.technologies.map((tech) => (
                       <li key={tech}>{tech}</li>
                     ))}

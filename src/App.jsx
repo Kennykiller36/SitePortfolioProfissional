@@ -38,7 +38,7 @@ export default function App() {
   return (
     <div className="app-shell">
       <a className="skip-link" href="#conteudo">
-        {lang === 'pt' ? 'Ir para o conteúdo' : 'Skip to content'}
+        {copy.skipToContent}
       </a>
       <Navbar
         lang={lang}
@@ -50,8 +50,8 @@ export default function App() {
       <main id="conteudo">
         <Hero lang={lang} copy={copy} />
         <About lang={lang} />
-        <Projects copy={copy} />
-        <Experiences copy={copy} />
+        <Projects copy={copy} lang={lang} />
+        <Experiences copy={copy} lang={lang} />
         <Contact copy={copy} lang={lang} />
       </main>
       <Footer lang={lang} />

@@ -24,14 +24,14 @@ export default function Navbar({ lang, setLang, copy, menuOpen, setMenuOpen }) {
           aria-controls="menu-principal"
           onClick={() => setMenuOpen((open) => !open)}
         >
-          <span className="sr-only">{lang === 'pt' ? 'Abrir menu' : 'Open menu'}</span>
+          <span className="sr-only">{copy.openMenu}</span>
           <span aria-hidden="true" className={menuOpen ? 'burger is-open' : 'burger'} />
         </button>
 
         <nav
           id="menu-principal"
           className={menuOpen ? 'site-nav is-open' : 'site-nav'}
-          aria-label={lang === 'pt' ? 'Principal' : 'Primary'}
+          aria-label={copy.primaryNav}
         >
           <ul>
             {links.map((link) => (

@@ -65,7 +65,7 @@ export default function Contact({ copy, lang }) {
       const email = data.get('email');
       const message = data.get('message');
       const subject = encodeURIComponent(
-        lang === 'pt' ? `Contato do portfólio — ${name}` : `Portfolio contact — ${name}`,
+        lang === 'pt' ? `Contato do portfólio — ${name}` : `Portfolio inquiry from ${name}`,
       );
       const body = encodeURIComponent(`${message}\n\n— ${name} <${email}>`);
       window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
@@ -102,7 +102,7 @@ export default function Contact({ copy, lang }) {
             </li>
             <li>
               <a
-                href={profile.linkedin}
+                href="https://www.linkedin.com/in/joaohervalmaia/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -113,7 +113,7 @@ export default function Contact({ copy, lang }) {
             </li>
             <li>
               <a
-                href={profile.github}
+                href="https://github.com/Kennykiller36"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
