@@ -36,40 +36,66 @@ const icons = {
   ),
 };
 
-export default function Contact({ copy, lang }) {
+export default function Contact({ copy }) {
   const [status, setStatus] = useState('idle');
+  const [statusMessage, setStatusMessage] = useState('');
 
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
 
+    // Honeypot: ignore bots that fill the hidden field
+    if (data.get('_honey')) {
+      setStatus('success');
+      setStatusMessage(copy.formSuccess);
+      form.reset();
+      return;
+    }
+
+    const payload = {
+      name: String(data.get('name') || '').trim(),
+      email: String(data.get('email') || '').trim(),
+      message: String(data.get('message') || '').trim(),
+      _subject: 'Novo contato do portfólio',
+      _template: 'table',
+      _captcha: 'false',
+    };
+
     setStatus('sending');
+    setStatusMessage('');
 
     try {
-      // FormSubmit: free email delivery without backend. Confirm once via inbox.
       const response = await fetch(`https://formsubmit.co/ajax/${profile.email}`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-        body: data,
+        body: JSON.stringify(payload),
       });
 
-      if (!response.ok) throw new Error('send failed');
+      const result = await response.json().catch(() => ({}));
+      const message = String(result?.message || '');
+
+      // First-time activation: FormSubmit emails a confirmation link
+      if (/confirm|activate|activation|verificar|confirme/i.test(message)) {
+        setStatus('pending');
+        setStatusMessage(copy.formPending);
+        return;
+      }
+
+      if (!response.ok || (result.success !== true && result.success !== 'true')) {
+        throw new Error(message || 'FormSubmit send failed');
+      }
+
       form.reset();
       setStatus('success');
+      setStatusMessage(copy.formSuccess);
     } catch {
-      // Fallback: open mail client with prefilled message
-      const name = data.get('name');
-      const email = data.get('email');
-      const message = data.get('message');
-      const subject = encodeURIComponent(
-        lang === 'pt' ? `Contato do portfólio — ${name}` : `Portfolio inquiry from ${name}`,
-      );
-      const body = encodeURIComponent(`${message}\n\n— ${name} <${email}>`);
-      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+      // Never open the system mail app
       setStatus('error');
+      setStatusMessage(copy.formError);
     }
   }
 
@@ -125,9 +151,14 @@ export default function Contact({ copy, lang }) {
           </ul>
 
           <form className="contact-form" onSubmit={handleSubmit} noValidate>
-            <input type="hidden" name="_subject" value="Novo contato pelo portfólio" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="text" name="_honey" className="honeypot" tabIndex={-1} autoComplete="off" />
+            <input
+              type="text"
+              name="_honey"
+              className="honeypot"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
 
             <label>
               <span>{copy.formName}</span>
@@ -147,8 +178,7 @@ export default function Contact({ copy, lang }) {
             </button>
 
             <p className="form-status" role="status" aria-live="polite">
-              {status === 'success' ? copy.formSuccess : null}
-              {status === 'error' ? copy.formError : null}
+              {statusMessage}
             </p>
           </form>
         </div>

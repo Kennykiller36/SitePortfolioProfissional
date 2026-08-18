@@ -130,4 +130,5 @@ _Ainda não publicado._ Após o deploy, atualize este item com a URL.
 ## Observações
 
 - Conteúdo baseado no currículo de João Herval Maia.
-- No primeiro envio pelo FormSubmit, confirme o e-mail na caixa de entrada de `joao.herval@gmail.com`.
+- O formulário envia e-mail via **FormSubmit** para `joao.herval@gmail.com` (sem abrir o app de e-mail).
+- **Primeira vez:** o FormSubmit manda um link de confirmação para o Gmail. Confirme e envie o formulário de novo.

@@ -213,7 +213,9 @@ export const uiCopy = {
     formSubmit: 'Enviar mensagem',
     formSending: 'Enviando…',
     formSuccess: 'Mensagem enviada com sucesso. Obrigado!',
-    formError: 'Não foi possível enviar agora. Tente pelo e-mail ou WhatsApp.',
+    formPending:
+      'Quase lá: abra o Gmail (joao.herval@gmail.com), confirme o e-mail do FormSubmit e envie de novo.',
+    formError: 'Não foi possível enviar agora. Verifique a conexão e tente novamente.',
     github: 'Repositório no GitHub',
     languages: 'Idiomas: Português (fluente) · Inglês (avançado)',
     skipToContent: 'Ir para o conteúdo',
@@ -245,7 +247,9 @@ export const uiCopy = {
     formSubmit: 'Send message',
     formSending: 'Sending…',
     formSuccess: 'Your message was sent successfully. Thank you!',
-    formError: "Couldn't send your message right now. Please try email or WhatsApp instead.",
+    formPending:
+      'Almost there: open Gmail (joao.herval@gmail.com), confirm the FormSubmit email, then submit again.',
+    formError: "Couldn't send your message right now. Check your connection and try again.",
     github: 'View on GitHub',
     languages: 'Languages: Portuguese (fluent) · English (advanced)',
     skipToContent: 'Skip to content',

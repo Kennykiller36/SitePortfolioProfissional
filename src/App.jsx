@@ -52,7 +52,7 @@ export default function App() {
         <About lang={lang} />
         <Projects copy={copy} lang={lang} />
         <Experiences copy={copy} lang={lang} />
-        <Contact copy={copy} lang={lang} />
+        <Contact copy={copy} />
       </main>
       <Footer lang={lang} />
     </div>
