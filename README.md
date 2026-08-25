@@ -141,7 +141,7 @@ npm run lint
 
 ## Link do site publicado na nuvem
 
-_Ainda não publicado._ Após o deploy (Vercel, Render, GitHub Pages ou similar), atualize este item com a URL.
+https://siteportfolioprofissional.onrender.com/
 
 ## Observações
 
