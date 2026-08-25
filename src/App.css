@@ -499,6 +499,7 @@
 }
 
 .contact-form {
+  position: relative;
   display: grid;
   gap: 0.9rem;
 }
@@ -524,12 +525,15 @@
   border-color: var(--accent);
 }
 
-.honeypot {
+.honeypot,
+.contact-frame {
   position: absolute;
   left: -9999px;
   opacity: 0;
   height: 0;
   width: 0;
+  border: 0;
+  overflow: hidden;
 }
 
 .form-status {

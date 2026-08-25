@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { profile } from '../data/content';
 
 const icons = {
@@ -39,64 +39,47 @@ const icons = {
 export default function Contact({ copy }) {
   const [status, setStatus] = useState('idle');
   const [statusMessage, setStatusMessage] = useState('');
+  const formRef = useRef(null);
+  const awaitingDelivery = useRef(false);
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  function markDelivered() {
+    if (!awaitingDelivery.current) {
+      return;
+    }
+    awaitingDelivery.current = false;
+    formRef.current?.reset();
+    setStatus('success');
+    setStatusMessage(copy.formSuccess);
+  }
+
+  function handleSubmit(event) {
     const form = event.currentTarget;
     const data = new FormData(form);
 
     // Honeypot: ignore bots that fill the hidden field
     if (data.get('_honey')) {
+      event.preventDefault();
       setStatus('success');
       setStatusMessage(copy.formSuccess);
       form.reset();
       return;
     }
 
-    const payload = {
-      name: String(data.get('name') || '').trim(),
-      email: String(data.get('email') || '').trim(),
-      message: String(data.get('message') || '').trim(),
-      _subject: 'Novo contato do portfólio',
-      _template: 'table',
-      _captcha: 'false',
-    };
+    const urlField = form.querySelector('input[name="_url"]');
+    if (urlField) {
+      urlField.value = window.location.href;
+    }
 
+    const nextField = form.querySelector('input[name="_next"]');
+    if (nextField) {
+      nextField.value = `${window.location.origin}/form-ok.html`;
+    }
+
+    awaitingDelivery.current = true;
     setStatus('sending');
     setStatusMessage('');
 
-    try {
-      const response = await fetch(`https://formsubmit.co/ajax/${profile.email}`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const result = await response.json().catch(() => ({}));
-      const message = String(result?.message || '');
-
-      // First-time activation: FormSubmit emails a confirmation link
-      if (/confirm|activate|activation|verificar|confirme/i.test(message)) {
-        setStatus('pending');
-        setStatusMessage(copy.formPending);
-        return;
-      }
-
-      if (!response.ok || (result.success !== true && result.success !== 'true')) {
-        throw new Error(message || 'FormSubmit send failed');
-      }
-
-      form.reset();
-      setStatus('success');
-      setStatusMessage(copy.formSuccess);
-    } catch {
-      // Never open the system mail app
-      setStatus('error');
-      setStatusMessage(copy.formError);
-    }
+    window.setTimeout(markDelivered, 2500);
   }
 
   return (
@@ -150,7 +133,25 @@ export default function Contact({ copy }) {
             </li>
           </ul>
 
-          <form className="contact-form" onSubmit={handleSubmit} noValidate>
+          <form
+            ref={formRef}
+            className="contact-form"
+            action={`https://formsubmit.co/${profile.email}`}
+            method="POST"
+            target="contact-delivery"
+            onSubmit={handleSubmit}
+          >
+            <iframe
+              name="contact-delivery"
+              title="Envio do formulário de contato"
+              className="contact-frame"
+              onLoad={markDelivered}
+            />
+            <input type="hidden" name="_subject" value="Novo contato do portfólio" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_url" value="" />
+            <input type="hidden" name="_next" value="" />
             <input
               type="text"
               name="_honey"

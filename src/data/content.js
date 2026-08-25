@@ -214,8 +214,10 @@ export const uiCopy = {
     formSending: 'Enviando…',
     formSuccess: 'Mensagem enviada com sucesso. Obrigado!',
     formPending:
-      'Quase lá: abra o Gmail (joao.herval@gmail.com), confirme o e-mail do FormSubmit e envie de novo.',
+      'Quase lá: abra o Gmail (joao.herval@gmail.com), inclusive o spam, confirme o link do FormSubmit e envie de novo.',
     formError: 'Não foi possível enviar agora. Verifique a conexão e tente novamente.',
+    formBlocked:
+      'O envio foi bloqueado neste ambiente. Publique o site ou tente outro navegador e envie de novo.',
     github: 'Repositório no GitHub',
     languages: 'Idiomas: Português (fluente) · Inglês (avançado)',
     skipToContent: 'Ir para o conteúdo',
@@ -248,8 +250,10 @@ export const uiCopy = {
     formSending: 'Sending…',
     formSuccess: 'Your message was sent successfully. Thank you!',
     formPending:
-      'Almost there: open Gmail (joao.herval@gmail.com), confirm the FormSubmit email, then submit again.',
+      'Almost there: open Gmail (joao.herval@gmail.com), including spam, confirm the FormSubmit link, then submit again.',
     formError: "Couldn't send your message right now. Check your connection and try again.",
+    formBlocked:
+      'Sending was blocked in this environment. Publish the site or try another browser, then submit again.',
     github: 'View on GitHub',
     languages: 'Languages: Portuguese (fluent) · English (advanced)',
     skipToContent: 'Skip to content',

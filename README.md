@@ -1,10 +1,10 @@
 # Portfólio Profissional — João Herval Maia
 
-Site de portfólio moderno e acessível para apresentar trajetória, habilidades, projetos e formas de contato de **João Herval Maia**, estudante de Engenharia de Software na PUC Minas.
+Site de portfólio de **João Herval Maia**, desenvolvedor e estudante de Engenharia de Software na PUC Minas. Apresenta trajetória, competências, projetos e formas de contato.
 
-O sistema é uma página única (SPA) com navegação por seções, layout responsivo (cabeçalho, área de conteúdo e rodapé) e conteúdo baseado no currículo profissional.
+É uma página única (SPA) em React, com navegação por âncoras, layout responsivo, conteúdo em português e inglês e textos centralizados em `src/data/content.js`.
 
-> **Protótipo inicial de front-end** (React + Vite). O deploy em nuvem (Vercel/Render/etc.) e o link público podem ser adicionados na etapa seguinte.
+Repositório: [github.com/Kennykiller36/SitePortfolioProfissional](https://github.com/Kennykiller36/SitePortfolioProfissional)
 
 ## Link do Wireframe no Figma
 
@@ -36,23 +36,36 @@ https://item-public-69282360.figma.site
 
 ## Descrição do projeto
 
-O portfólio apresenta:
+O portfólio é uma SPA com cabeçalho fixo, seções âncora e rodapé. O seletor **PT/EN** troca os textos da interface e atualiza o `lang` do documento.
 
-1. **Sobre mim** — apresentação em português e inglês (formação, área de atuação, interesses, objetivos e competências)
-2. **Projetos** — linha do tempo do mais antigo ao mais recente, com descrição, tecnologias e link no GitHub
-3. **Experiências** — estágios e atividades (empresa, cargo, período e descrição)
-4. **Contato** — ícones clicáveis (e-mail, WhatsApp, LinkedIn, GitHub) e formulário com envio de e-mail
+1. **Hero** — nome, cargo e atalhos para projetos e contato
+2. **Sobre mim** — formação, área de atuação, interesses, objetivos e competências (Java, Python, C#, JavaScript, Spring Boot, Flutter, Git, Scrum, entre outras)
+3. **Projetos** — linha do tempo do mais antigo ao mais recente, com cargo, descrição, tecnologias e link no GitHub:
+   - **Powerman(ager)** (2024) — artista 3D; Godot / GDScript
+   - **Clothes Organizer** (2024–2025) — full stack; Flutter / SQL
+   - **Bibliotech** (2025) — full stack; Java / TSX / JSON
+   - **Jurisflow** (2026) — full stack; Java / TSX / SQL / IA
+4. **Experiências** — Tagmavisions (arte 3D / VR), RDR Sistemas (programação Java/Spring Boot) e UFMG (pesquisa em Python)
+5. **Contato** — e-mail, WhatsApp, LinkedIn e GitHub, além de formulário com envio via FormSubmit (sem abrir o app de e-mail)
 
-## Tecnologias previstas / utilizadas
+Recursos de interface:
+
+- menu hamburger no mobile
+- link “Ir para o conteúdo”, rótulos ARIA e respeito a `prefers-reduced-motion`
+- animação de entrada das seções (`IntersectionObserver`)
+
+## Tecnologias utilizadas
 
 - HTML5, CSS3 e JavaScript
 - [React](https://react.dev/) 19
 - [Vite](https://vite.dev/) 8
 - Google Fonts (Syne + DM Sans)
-- FormSubmit (envio de e-mail do formulário, sem backend próprio)
-- Hospedagem prevista em nuvem gratuita (ex.: Vercel, Render, Fly.io)
+- [FormSubmit](https://formsubmit.co) (envio AJAX do formulário, sem backend próprio)
+- [oxlint](https://oxc.rs/docs/guide/usage/linter) (`npm run lint`)
 
-### Dependências e bibliotecas/frameworks
+Não há UI kit externo (Mantine/MUI): o visual é CSS próprio, alinhado à identidade do perfil.
+
+### Dependências
 
 | Pacote | Uso |
 | --- | --- |
@@ -61,9 +74,7 @@ O portfólio apresenta:
 | `@vitejs/plugin-react` | Suporte a JSX/React no Vite |
 | `oxlint` | Lint (`npm run lint`) |
 
-Não há UI kit externo (Mantine/MUI): o visual é CSS próprio, alinhado à identidade do perfil.
-
-## Estrutura inicial do site
+## Estrutura do site
 
 ```text
 SitePortfólioProfissional/
@@ -77,6 +88,8 @@ SitePortfólioProfissional/
 ├── public/
 │   └── favicon.svg
 ├── src/
+│   ├── assets/
+│   │   └── hero.png
 │   ├── components/
 │   │   ├── About.jsx
 │   │   ├── Contact.jsx
@@ -86,7 +99,7 @@ SitePortfólioProfissional/
 │   │   ├── Navbar.jsx
 │   │   └── Projects.jsx
 │   ├── data/
-│   │   └── content.js
+│   │   └── content.js       # perfil, textos PT/EN, projetos e experiências
 │   ├── App.css
 │   ├── App.jsx
 │   ├── index.css
@@ -94,6 +107,7 @@ SitePortfólioProfissional/
 ├── index.html
 ├── package.json
 ├── vite.config.js
+├── .oxlintrc.json
 └── README.md
 ```
 
@@ -103,9 +117,11 @@ Layout principal:
 - **Área de conteúdo** — seções âncora da página
 - **Rodapé** — copyright e idiomas
 
+Para alterar textos, projetos ou dados de contato, edite `src/data/content.js`.
+
 ## Instalação e execução local
 
-Pré-requisitos: Node.js 18+ e npm.
+Pré-requisitos: [Node.js](https://nodejs.org/) 20.19+ (recomendado para o Vite 8) e npm.
 
 ```bash
 cd SitePortfólioProfissional
@@ -125,10 +141,12 @@ npm run lint
 
 ## Link do site publicado na nuvem
 
-_Ainda não publicado._ Após o deploy, atualize este item com a URL.
+_Ainda não publicado._ Após o deploy (Vercel, Render, GitHub Pages ou similar), atualize este item com a URL.
 
 ## Observações
 
 - Conteúdo baseado no currículo de João Herval Maia.
-- O formulário envia e-mail via **FormSubmit** para `joao.herval@gmail.com` (sem abrir o app de e-mail).
-- **Primeira vez:** o FormSubmit manda um link de confirmação para o Gmail. Confirme e envie o formulário de novo.
+- O formulário envia e-mail via **FormSubmit** (API AJAX) para `joao.herval@gmail.com`, com campo honeypot contra bots. Não abre o aplicativo de e-mail.
+- **Primeira vez:** o FormSubmit manda um link de confirmação para o Gmail (confira também o spam). Confirme e envie o formulário de novo.
+- Alguns ambientes (localhost restrito ou bloqueio de `Referer`) podem recusar o envio. Nesse caso, publique o site ou tente outro navegador.
+- O atalho de e-mail na lista de contatos continua sendo `mailto:` de propósito; quem dispara a mensagem sozinho é o botão **Enviar mensagem**.
