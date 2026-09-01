@@ -9,14 +9,49 @@ import Footer from './components/Footer';
 import { uiCopy } from './data/content';
 import './App.css';
 
+function readDocumentTheme() {
+  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+}
+
 export default function App() {
   const [lang, setLang] = useState('pt');
+  const [theme, setTheme] = useState(readDocumentTheme);
   const [menuOpen, setMenuOpen] = useState(false);
   const copy = uiCopy[lang];
 
   useEffect(() => {
     document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
   }, [lang]);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = (event) => {
+      try {
+        if (localStorage.getItem('theme')) return;
+      } catch {
+        return;
+      }
+      setTheme(event.matches ? 'dark' : 'light');
+    };
+    media.addEventListener('change', onChange);
+    return () => media.removeEventListener('change', onChange);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((current) => {
+      const next = current === 'dark' ? 'light' : 'dark';
+      try {
+        localStorage.setItem('theme', next);
+      } catch {
+        /* ignore quota / private mode */
+      }
+      return next;
+    });
+  };
 
   useEffect(() => {
     const nodes = document.querySelectorAll('[data-reveal]');
@@ -43,6 +78,8 @@ export default function App() {
       <Navbar
         lang={lang}
         setLang={setLang}
+        theme={theme}
+        onToggleTheme={toggleTheme}
         copy={copy}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
