@@ -5,7 +5,7 @@ export default function Footer({ lang }) {
   return (
     <footer className="site-footer">
       <p>
-        © {year} {profile.name}. {uiCopy[lang].languages}
+        © {year} {profile.name} All rights reserved.
       </p>
     </footer>
   );
